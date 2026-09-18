@@ -1,0 +1,196 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.72);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.bar {
+  width: min(1180px, calc(100% - 2rem));
+  min-height: 76px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.72rem;
+  color: #0f172a;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  border-radius: 0.9rem;
+  box-shadow: 0 7px 15px rgba(13, 148, 136, 0.26);
+}
+
+.brandName { letter-spacing: -0.045em; }
+.brandNameAccent { color: #0f766e; }
+
+.navLinks,
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks { gap: 0.22rem; }
+.actions { gap: 0.65rem; }
+
+.navLink {
+  position: relative;
+  padding: 0.55rem 0.8rem;
+  color: #64748b;
+  border-radius: 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.navLink::after {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.26rem;
+  left: 0.8rem;
+  height: 2px;
+  content: "";
+  background: #14b8a6;
+  border-radius: 99px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+
+.navLink:hover,
+.navLinkActive {
+  color: #0f766e;
+  background: #f0fdfa;
+}
+
+.navLinkActive::after,
+.navLink:hover::after { transform: scaleX(1); }
+
+.button,
+.mobileButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  border: 1px solid transparent;
+  border-radius: 0.72rem;
+  padding: 0.55rem 1rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.button:hover,
+.mobileButton:hover { transform: translateY(-1px); }
+
+.secondary {
+  color: #334155;
+  background: #fff;
+  border-color: #dbe3ec;
+}
+
+.secondary:hover { background: #f8fafc; border-color: #94a3b8; }
+
+.primary {
+  color: #fff;
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+  box-shadow: 0 6px 14px rgba(13, 148, 136, 0.2);
+}
+
+.primary:hover {
+  background: linear-gradient(135deg, #115e59, #0f766e);
+  box-shadow: 0 9px 18px rgba(13, 148, 136, 0.27);
+}
+
+.menuToggle {
+  display: none;
+  width: 2.65rem;
+  height: 2.65rem;
+  place-items: center;
+  color: #0f766e;
+  background: #f0fdfa;
+  border: 1px solid #ccfbf1;
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.mobilePanel {
+  display: none;
+  padding: 0.8rem max(1rem, calc((100% - 1180px) / 2)) 1.1rem;
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 1px solid #e2e8f0;
+}
+
+.mobileLinks { display: grid; gap: 0.3rem; }
+
+.mobileLink {
+  display: block;
+  padding: 0.72rem 0.85rem;
+  color: #475569;
+  border-radius: 0.65rem;
+  font-size: 0.94rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.mobileLink:hover,
+.mobileLinkActive { color: #0f766e; background: #f0fdfa; }
+
+.mobileActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.mobileButton { width: 100%; }
+.logout { color: #b91c1c; }
+
+.brand:focus-visible,
+.navLink:focus-visible,
+.button:focus-visible,
+.menuToggle:focus-visible,
+.mobileLink:focus-visible,
+.mobileButton:focus-visible {
+  outline: 3px solid rgba(20, 184, 166, 0.38);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .bar { min-height: 68px; width: min(100% - 1.5rem, 1180px); }
+  .navLinks, .actions { display: none; }
+  .menuToggle { display: grid; }
+  .mobilePanel { display: block; }
+}
+
+@media (max-width: 390px) {
+  .brand { gap: 0.55rem; font-size: 0.98rem; }
+  .brandMark { width: 2.25rem; height: 2.25rem; }
+  .mobileActions { grid-template-columns: 1fr; }
+}

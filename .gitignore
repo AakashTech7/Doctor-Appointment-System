@@ -1,0 +1,33 @@
+# Frontend dependencies and build output
+vite-project/node_modules/
+vite-project/dist/
+vite-project/dist-ssr/
+vite-project/coverage/
+
+# Backend build output
+DoctorAppointmentSystembackend/target/
+DoctorAppointmentSystembackend/bin/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# IDE and operating-system files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.metadata/
+.classpath
+.project
+.settings/
+*.iml
+.DS_Store
+Thumbs.db

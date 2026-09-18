@@ -1,0 +1,25 @@
+import React, { useEffect, useMemo, useState } from "react";
+import { CalendarCheck2, CalendarClock, Check, Clock3, Inbox, UsersRound, X } from "lucide-react";
+import { api } from "../../api";
+import { toast } from "react-toastify";
+import "./DoctorAppointments.css";
+
+const formatDate = (value) => value ? new Date(value).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : "—";
+const statuses = ["all", "Pending", "Booked", "Completed", "Cancelled", "Rejected"];
+
+const DoctorAllAppointments = () => {
+  const [appointments, setAppointments] = useState([]);
+  const [filter, setFilter] = useState("all");
+  const loadAppointments = async () => { try { const { data } = await api.get("/appointments/doctor/all-appointments"); setAppointments(data || []); } catch { toast.error("Failed to fetch appointments"); } };
+  useEffect(() => { loadAppointments(); }, []);
+  const updateAppointment = async (action, id, message) => { try { await api.put(`/appointments/${action}/${id}`); toast.success(message); loadAppointments(); } catch { toast.error("Something went wrong"); } };
+  const shown = useMemo(() => filter === "all" ? appointments : appointments.filter((appointment) => appointment.status === filter), [appointments, filter]);
+  const count = (status) => appointments.filter((appointment) => appointment.status === status).length;
+  return <main className="doctor-appointments"><div className="doctor-appointments__container">
+    <header className="doctor-appointments__header"><div><p>Appointment requests</p><h1>Patient appointments</h1><span>Manage all appointment requests from your patients.</span></div><div><CalendarClock size={25} /></div></header>
+    <section className="doctor-appointment-summary"><article><span><CalendarClock size={20} /></span><div><p>Pending review</p><strong>{count("Pending")}</strong><small>Requests awaiting action</small></div></article><article><span className="doctor-appointment-summary__booked"><CalendarCheck2 size={20} /></span><div><p>Upcoming visits</p><strong>{count("Booked")}</strong><small>Confirmed appointments</small></div></article><article><span className="doctor-appointment-summary__total"><UsersRound size={20} /></span><div><p>All appointments</p><strong>{appointments.length}</strong><small>Patient consultations</small></div></article></section>
+    <nav className="doctor-appointment-tabs" aria-label="Appointment status filters">{statuses.map((status) => <button key={status} className={filter === status ? "is-active" : ""} onClick={() => setFilter(status)}>{status === "all" ? "All" : status}<span>{status === "all" ? appointments.length : count(status)}</span></button>)}</nav>
+    <section className="doctor-appointment-table"><header><div><h2>{filter === "all" ? "All appointment requests" : `${filter} appointments`}</h2><p>{shown.length} {shown.length === 1 ? "appointment" : "appointments"} shown</p></div></header>{shown.length ? <div className="doctor-appointment-table__scroll"><table><thead><tr><th>Patient</th><th>Schedule</th><th>Status</th><th>Actions</th></tr></thead><tbody>{shown.map((appointment) => <tr key={appointment.appointmentId}><td><div className="doctor-appointment-patient"><span>{appointment.patientName?.charAt(0) || "P"}</span><div><strong>{appointment.patientName}</strong><small>{appointment.gender || "—"} · {appointment.age || "—"} years</small></div></div></td><td><strong>{formatDate(appointment.appointmentDate)}</strong><small><Clock3 size={13} /> {appointment.appointmentTime || "Time not set"}</small></td><td><span className={`doctor-appointment-status doctor-appointment-status--${String(appointment.status || "unknown").toLowerCase()}`}>{appointment.status || "Unknown"}</span></td><td><div className="doctor-appointment-actions">{appointment.status === "Pending" && <><button className="doctor-appointment-actions__approve" onClick={() => updateAppointment("accept", appointment.appointmentId, "Appointment accepted")}><Check size={15} /> Accept</button><button className="doctor-appointment-actions__reject" onClick={() => updateAppointment("reject", appointment.appointmentId, "Appointment rejected")}><X size={15} /> Reject</button></>}{appointment.status === "Booked" && <><button className="doctor-appointment-actions__approve" onClick={() => updateAppointment("complete", appointment.appointmentId, "Appointment completed")}><Check size={15} /> Complete</button><button className="doctor-appointment-actions__cancel" onClick={() => updateAppointment("cancel", appointment.appointmentId, "Appointment cancelled")}><X size={15} /> Cancel</button></>}{!["Pending", "Booked"].includes(appointment.status) && <span className="doctor-appointment-no-action">No action required</span>}</div></td></tr>)}</tbody></table></div> : <div className="doctor-appointment-empty"><Inbox size={35} /><h3>No appointments found</h3><p>{filter === "all" ? "New patient requests will appear here for review." : `There are no appointments with ${filter.toLowerCase()} status.`}</p></div>}</section>
+  </div></main>;
+};
+export default DoctorAllAppointments;

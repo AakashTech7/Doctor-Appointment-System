@@ -1,0 +1,62 @@
+.doctor-dashboard {
+  min-height: 100vh;
+  background: #f5f8fa;
+  color: #172033;
+  padding: 32px 16px 48px;
+}
+
+.doctor-dashboard__container { max-width: 1280px; margin: 0 auto; }
+
+.doctor-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: linear-gradient(125deg, #102b3e 0%, #155e63 57%, #0c7981 100%);
+  box-shadow: 0 20px 45px rgba(16, 43, 62, .17);
+  color: #fff;
+}
+
+.doctor-hero__content { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 36px 40px; }
+.doctor-hero__copy { max-width: 720px; }
+.doctor-hero__eyebrow { display: inline-flex; align-items: center; gap: 7px; border: 1px solid rgba(255,255,255,.17); border-radius: 999px; background: rgba(255,255,255,.11); padding: 7px 11px; color: #d8fffa; font-size: 11px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.doctor-hero h1 { margin: 17px 0 8px; font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -.035em; line-height: 1.12; }
+.doctor-hero h1 strong { color: #9ff4e9; }
+.doctor-hero p { max-width: 640px; margin: 0; color: #d2e8e9; font-size: 15px; line-height: 1.65; }
+.doctor-hero__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.doctor-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid transparent; border-radius: 12px; padding: 11px 15px; cursor: pointer; font: inherit; font-size: 14px; font-weight: 750; transition: transform .2s, background .2s, border-color .2s; }
+.doctor-button:hover { transform: translateY(-1px); }
+.doctor-button--light { background: #fff; color: #155e63; }
+.doctor-button--light:hover { background: #eafffb; }
+.doctor-button--ghost { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.1); color: #fff; }
+.doctor-button--ghost:hover { background: rgba(255,255,255,.18); }
+.doctor-hero__profile { position: relative; flex: 0 0 auto; width: 132px; height: 132px; padding: 5px; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; background: rgba(255,255,255,.15); }
+.doctor-hero__profile img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #dbe7e9; }
+.doctor-hero__online-dot { position: absolute; right: 6px; bottom: 8px; width: 18px; height: 18px; border: 3px solid #176269; border-radius: 50%; background: #4ade80; }
+.doctor-hero__orb { position: absolute; border-radius: 50%; pointer-events: none; }
+.doctor-hero__orb--large { top: -115px; right: -74px; width: 290px; height: 290px; border: 32px solid rgba(255,255,255,.08); }
+.doctor-hero__orb--small { right: 210px; bottom: -75px; width: 150px; height: 150px; background: rgba(100, 230, 220, .12); }
+
+.doctor-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+.doctor-stat-card { display: grid; grid-template-columns: auto 1fr; gap: 13px; padding: 20px; border: 1px solid #e4eaf0; border-radius: 18px; background: #fff; box-shadow: 0 2px 5px rgba(15, 23, 42, .02); transition: transform .2s, box-shadow .2s; }
+.doctor-stat-card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(15, 23, 42, .07); }
+.doctor-icon { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 13px; }
+.doctor-icon--teal { background: #e5f8f5; color: #0f766e; }.doctor-icon--blue { background: #eaf4ff; color: #1971c2; }.doctor-icon--green { background: #eaf9ef; color: #17803d; }.doctor-icon--amber { background: #fff6df; color: #b46a00; }.doctor-icon--indigo { background: #eef0ff; color: #4f46c7; }.doctor-icon--sky { background: #e9f7fb; color: #0d7490; }.doctor-icon--orange { background: #fff1e7; color: #c65214; }.doctor-icon--rose { background: #fff0f2; color: #be3455; }.doctor-icon--purple { background: #f4efff; color: #7652b7; }
+.doctor-stat-card__value { margin: 0; color: #172033; font-size: 27px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.doctor-stat-card h2 { margin: 4px 0 0; color: #536174; font-size: 13px; font-weight: 700; }
+.doctor-stat-card__detail { grid-column: 1 / -1; margin: 2px 0 0; padding-top: 12px; border-top: 1px solid #edf1f4; color: #8b97a7; font-size: 12px; font-weight: 600; }
+
+.doctor-actions-section { margin-top: 36px; }
+.doctor-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.doctor-section-heading p { margin: 0; color: #0f766e; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.doctor-section-heading h2 { margin: 4px 0 0; color: #172033; font-size: 25px; letter-spacing: -.025em; }
+.doctor-section-heading > span { color: #788699; font-size: 14px; }
+.doctor-actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 18px; }
+.doctor-action-card { display: flex; min-height: 244px; flex-direction: column; align-items: flex-start; padding: 22px; border: 1px solid #e4eaf0; border-radius: 18px; background: #fff; box-shadow: 0 2px 5px rgba(15,23,42,.02); transition: transform .2s, border-color .2s, box-shadow .2s; }
+.doctor-action-card:hover { transform: translateY(-3px); border-color: #b8dfda; box-shadow: 0 14px 27px rgba(15, 88, 94, .09); }
+.doctor-action-card h3 { margin: 18px 0 5px; color: #172033; font-size: 16px; font-weight: 800; }
+.doctor-action-card p { margin: 0; color: #68778b; font-size: 13px; line-height: 1.55; }
+.doctor-action-card button { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding: 13px 0 0; border: 0; background: transparent; color: #0f766e; cursor: pointer; font: inherit; font-size: 13px; font-weight: 800; }
+.doctor-action-card button svg { transition: transform .2s; }.doctor-action-card:hover button svg { transform: translateX(3px); }
+
+@media (max-width: 1100px) { .doctor-stats, .doctor-actions-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .doctor-dashboard { padding: 16px 12px 32px; }.doctor-hero__content { align-items: flex-start; padding: 28px 22px; }.doctor-hero__profile { width: 72px; height: 72px; }.doctor-hero__online-dot { right: 0; bottom: 2px; }.doctor-hero__orb--small { right: 0; }.doctor-stats, .doctor-actions-grid { grid-template-columns: 1fr; }.doctor-section-heading { align-items: flex-start; flex-direction: column; gap: 6px; }.doctor-action-card { min-height: 210px; } }

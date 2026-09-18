@@ -1,0 +1,484 @@
+.page {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --accent: #f59e0b;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  margin-top: 65px;
+  color: var(--text);
+  background-color: #f8fafc;
+}
+
+.hero,
+.section {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: calc(100vh - 65px);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.5rem;
+  align-items: center;
+  padding: 4.5rem 0 3rem;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.badge,
+.sectionTag {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--primary-dark);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: clamp(2.6rem, 5vw, 4.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.heroText {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.primaryButton,
+.secondaryButton,
+.panelButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0.85rem 1.5rem;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.primaryButton,
+.panelButton {
+  color: #ffffff;
+  background: var(--primary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.secondaryButton {
+  color: var(--primary-dark);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+}
+
+.primaryButton:hover,
+.panelButton:hover {
+  transform: translateY(-2px);
+  background-color: var(--primary-dark);
+}
+
+.secondaryButton:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.statCard {
+  padding: 1.35rem 1.2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.statCard h2 {
+  margin: 0 0 0.35rem;
+  font-size: 2rem;
+  color: var(--primary-dark);
+}
+
+.statCard p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.heroVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.heroImageCard {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  padding: 1rem;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+  height: 580px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.floatingCardTop,
+.floatingCardBottom {
+  position: absolute;
+  max-width: 220px;
+  padding: 1rem 1.1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.floatingCardTop {
+  top: 2rem;
+  left: -1.5rem;
+}
+
+.floatingCardBottom {
+  right: -1.5rem;
+  bottom: 2rem;
+}
+
+.floatingCardTop span,
+.floatingCardBottom strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--primary-dark);
+}
+
+.floatingCardTop strong,
+.floatingCardBottom p {
+  margin: 0;
+}
+
+.floatingCardBottom p,
+.floatingCardTop span {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.section {
+  padding: 2rem 0 4.5rem;
+}
+
+.sectionHeading {
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+.sectionHeading h2 {
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.15;
+}
+
+.sectionHeading p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.featureGrid,
+.specialtyGrid {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.featureGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.featureCard,
+.specialtyCard,
+.stepCard,
+.infoPanel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.featureCard {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.featureImage {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 24px;
+  margin-bottom: 1rem;
+}
+
+.featureCard h3,
+.specialtyCard h3,
+.stepCard h3,
+.infoPanel h3 {
+  margin: 0 0 0.75rem;
+}
+
+.featureCard p,
+.specialtyCard p,
+.stepCard p,
+.trustContent p,
+.infoPanel p,
+.benefitItem p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.specialtySection {
+  padding-top: 0;
+}
+
+.specialtyGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.specialtyCard {
+  padding: 1.7rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.specialtyCard::before {
+  content: "";
+  position: absolute;
+  inset: auto -30px -30px auto;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.processSection,
+.trustSection {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.processVisual {
+  position: relative;
+}
+
+.processImage {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+}
+
+.processContent h2,
+.trustContent h2 {
+  margin: 1rem 0 1.2rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+}
+
+.stepsList {
+  display: grid;
+  gap: 1rem;
+}
+
+.stepCard {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.3rem;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--primary);
+}
+
+.benefitList {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.benefitItem {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+}
+
+.benefitIcon {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+.infoPanel {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.panelButton {
+  margin-top: 1.5rem;
+  width: fit-content;
+}
+
+@media (max-width: 1100px) {
+  .hero,
+  .processSection,
+  .trustSection {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 3rem;
+  }
+
+  .heroVisual {
+    order: -1;
+  }
+
+  .featureGrid,
+  .specialtyGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .floatingCardTop {
+    left: 1rem;
+  }
+
+  .floatingCardBottom {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    margin-top: 72px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 2.5rem 0 2rem;
+    gap: 1.8rem;
+  }
+
+  .heroTitle {
+    font-size: 2.4rem;
+  }
+
+  .heroText,
+  .sectionHeading p,
+  .featureCard p,
+  .specialtyCard p,
+  .stepCard p,
+  .trustContent p,
+  .infoPanel p,
+  .benefitItem p {
+    font-size: 0.96rem;
+  }
+
+  .statsGrid,
+  .featureGrid,
+  .specialtyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroImage {
+    height: 420px;
+  }
+
+  .floatingCardTop,
+  .floatingCardBottom {
+    position: static;
+    max-width: none;
+    margin-top: 1rem;
+  }
+
+  .heroImageCard {
+    padding: 0.8rem;
+  }
+
+  .section {
+    padding: 1.5rem 0 3.2rem;
+  }
+
+  .featureCard,
+  .specialtyCard,
+  .infoPanel {
+    padding: 1.4rem;
+  }
+
+  .processImage {
+    min-height: 320px;
+  }
+
+  .stepCard {
+    flex-direction: column;
+  }
+}

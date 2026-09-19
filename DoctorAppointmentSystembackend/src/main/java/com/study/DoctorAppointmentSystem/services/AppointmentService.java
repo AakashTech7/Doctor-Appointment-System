@@ -54,6 +54,8 @@ public interface AppointmentService {
 
 	List<AppointmentResponseDto> getPendingPaymentAppointments(Integer patientId);
 
+	List<AppointmentResponseDto> getPatientPaymentHistory(Integer userId);
+
 	List<AppointmentResponseDto> getCompletedAppointments();
 
 	List<AppointmentResponseDto> getAllAppointmentsForDoctor(Integer userId);

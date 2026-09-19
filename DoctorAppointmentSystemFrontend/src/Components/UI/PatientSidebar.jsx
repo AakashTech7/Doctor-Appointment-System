@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
@@ -7,7 +7,6 @@ import {
   FileText, 
   CreditCard, 
   User, 
-  Bell, 
   Settings, 
   LogOut,
   Menu,
@@ -24,7 +23,6 @@ const PatientSidebar = ({ isOpen, onClose }) => {
     { path: '/view-medical-report', icon: FileText, label: 'Medical Records' },
     { path: '/patient/make-payment', icon: CreditCard, label: 'Payments' },
     { path: '/patient/update-profile', icon: User, label: 'My Profile' },
-    { path: '/notifications', icon: Bell, label: 'Notifications' },
     { path: '/settings', icon: Settings, label: 'Settings' },
   ];
 

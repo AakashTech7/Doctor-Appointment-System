@@ -161,6 +161,10 @@ const router = createBrowserRouter([
         path: "/patient/make-payment/:patientId",
         element: <MakePayments />,
       },
+      {
+        path: "/patient/make-payment",
+        element: <MakePayments />,
+      },
     ],
   },
 ]);

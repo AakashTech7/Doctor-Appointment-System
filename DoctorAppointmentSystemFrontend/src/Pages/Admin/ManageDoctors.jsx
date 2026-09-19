@@ -4,6 +4,13 @@ import { api } from "../../api";
 const ManageDoctors = () => {
   const [pendingDoctor, setPendingDoctor] = useState([]);
   const [pendingDoctorDetails, setPendingDoctorDetails] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredDoctors = pendingDoctor.filter((doctor) =>
+    [doctor.doctorName, doctor.specialization, doctor.qualification]
+      .filter(Boolean)
+      .some((value) => value.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
   const fetchPendingStatusDoctor = async () => {
     try {
@@ -57,105 +64,94 @@ const ManageDoctors = () => {
         minHeight: "100vh",
       }}
     >
-      {/* Header */}
       {pendingDoctor.length > 0 ? (
         <>
-          {" "}
           <div
-            className="card border-0 shadow rounded-4 mb-4"
+            className="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden"
             style={{
-              background: "linear-gradient(135deg,#0f766e,#14b8a6)",
+              background: "linear-gradient(120deg, #0f766e 0%, #0d9488 55%, #2dd4bf 100%)",
             }}
           >
-            <div className="card-body p-4">
-              <div className="row align-items-center">
+            <div className="card-body p-4 p-lg-5 position-relative">
+              <div className="row align-items-center g-4 position-relative">
                 <div className="col-lg-8">
-                  <h2 className="text-white fw-bold">
-                    Doctor Approval Requests
-                  </h2>
-
-                  <p
-                    className="text-white mb-0"
-                    style={{
-                      opacity: ".9",
-                    }}
-                  >
-                    Review newly registered doctors before allowing them into
-                    the system.
+                  <div className="d-flex align-items-center gap-3 mb-3">
+                    <span className="d-inline-flex align-items-center justify-content-center rounded-3 bg-white bg-opacity-20" style={{ width: "48px", height: "48px" }}>
+                      <i className="bi bi-person-check-fill text-white fs-4"></i>
+                    </span>
+                    <div>
+                      <p className="text-uppercase text-white-50 fw-semibold small mb-1" style={{ letterSpacing: ".12em" }}>Credential review</p>
+                      <h2 className="text-white fw-bold mb-0">Doctor Approval Requests</h2>
+                    </div>
+                  </div>
+                  <p className="text-white mb-0" style={{ opacity: ".9", maxWidth: "620px" }}>
+                    Review professional credentials and approve the providers ready to join your care network.
                   </p>
                 </div>
-
-                <div className="col-lg-4 text-end">
-                  <span
-                    className="badge rounded-pill px-4 py-3"
-                    style={{
-                      background: "#fff",
-                      color: "#0f766e",
-                      fontSize: "15px",
-                    }}
-                  >
-                    Pending : {pendingDoctor.length}
-                  </span>
+                <div className="col-lg-4">
+                  <div className="bg-white bg-opacity-95 rounded-4 p-3 p-md-4 text-lg-start shadow-sm">
+                    <p className="text-muted text-uppercase fw-bold small mb-1" style={{ letterSpacing: ".08em" }}>Awaiting review</p>
+                    <div className="d-flex align-items-baseline gap-2">
+                      <span className="display-6 fw-bold" style={{ color: "#0f766e" }}>{pendingDoctor.length}</span>
+                      <span className="text-muted">doctor{pendingDoctor.length === 1 ? "" : "s"}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* Search */}
-          <div className="card border-0 shadow rounded-4 mb-4">
-            <div className="card-body">
-              <div className="row align-items-center">
-                <div className="col-lg-6">
-                  <h5 className="fw-bold mb-0">Registered Doctors</h5>
+          <div className="card border-0 shadow-sm rounded-4 mb-4">
+            <div className="card-body p-3 p-md-4">
+              <div className="row align-items-center g-3">
+                <div className="col-lg-5">
+                  <h5 className="fw-bold text-dark mb-1">Pending provider applications</h5>
+                  <p className="text-muted small mb-0">Open a profile to check credentials before making a decision.</p>
                 </div>
-
-                <div className="col-lg-6">
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    placeholder="Search Doctor..."
-                  />
+                <div className="col-lg-7">
+                  <div className="input-group">
+                    <span className="input-group-text bg-white border-end-0 rounded-start-pill ps-3"><i className="bi bi-search text-muted"></i></span>
+                    <input
+                      type="search"
+                      value={searchQuery}
+                      onChange={(event) => setSearchQuery(event.target.value)}
+                      className="form-control border-start-0 rounded-end-pill py-2"
+                      placeholder="Search by doctor, specialty, or qualification"
+                      aria-label="Search pending doctor applications"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* ========================= TABLE ========================= */}
-          <div className="card border-0 shadow rounded-4">
+          <div className="card border-0 shadow-sm rounded-4 overflow-hidden">
             <div className="card-body p-0">
               <div className="table-responsive">
                 <table className="table table-hover align-middle mb-0">
-                  <thead
-                    style={{
-                      background: "#0f766e",
-                    }}
-                  >
+                  <thead style={{ background: "#f0fdfa" }}>
                     <tr>
-                      <th className="text-dark ps-4 py-3">Doctor</th>
-
-                      <th className="text-dark py-3">Specialization</th>
-
-                      <th className="text-dark py-3">Qualification</th>
-
-                      <th className="text-dark py-3">Experience</th>
-
-                      <th className="text-dark py-3">Status</th>
-
-                      <th className="text-dark text-center py-3">Action</th>
+                      <th className="text-uppercase small text-muted ps-4 py-3" style={{ letterSpacing: ".06em" }}>Doctor</th>
+                      <th className="text-uppercase small text-muted py-3" style={{ letterSpacing: ".06em" }}>Specialization</th>
+                      <th className="text-uppercase small text-muted py-3" style={{ letterSpacing: ".06em" }}>Qualification</th>
+                      <th className="text-uppercase small text-muted py-3" style={{ letterSpacing: ".06em" }}>Experience</th>
+                      <th className="text-uppercase small text-muted py-3" style={{ letterSpacing: ".06em" }}>Status</th>
+                      <th className="text-uppercase small text-muted text-center py-3 pe-4" style={{ letterSpacing: ".06em" }}>Review</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    {pendingDoctor.map((pd) => {
+                    {filteredDoctors.map((pd) => {
                       return (
-                        <tr>
-                          <td className="ps-4 text-center">
+                        <tr key={pd.docId}>
+                          <td className="ps-4 py-3">
                             <div className="d-flex align-items-center">
                               <img
                                 src={`http://localhost:8080/doctors/get-image/${pd.docId}`}
-                                alt=""
-                                className="rounded-circle"
+                                alt={`Dr. ${pd.doctorName}`}
+                                className="rounded-circle border border-2 border-white shadow-sm"
                                 style={{
                                   width: "55px",
                                   height: "55px",
+                                  objectFit: "cover",
                                 }}
                               />
 
@@ -164,44 +160,52 @@ const ManageDoctors = () => {
                                   Dr. {pd.doctorName}
                                 </h6>
 
-                                <small className="text-muted">
-                                  ahmed@gmail.com
-                                </small>
+                                <small className="text-muted">Application #{pd.docId}</small>
                               </div>
                             </div>
                           </td>
 
                           <td>
-                            <span className="badge bg-info fs-6">
+                            <span className="badge rounded-pill fw-semibold px-3 py-2" style={{ background: "#e0f2fe", color: "#0369a1" }}>
                               {pd.specialization}
                             </span>
                           </td>
 
-                          <td>{pd.qualification}</td>
+                          <td className="text-secondary">{pd.qualification}</td>
 
-                          <td>{pd.experience} Years</td>
+                          <td className="text-secondary">{pd.experience} years</td>
 
                           <td>
-                            <span className="badge bg-warning text-dark fs-6">
+                            <span className="badge rounded-pill px-3 py-2" style={{ background: "#fef3c7", color: "#92400e" }}>
                               {pd.status}
                             </span>
                           </td>
 
-                          <td className="text-center">
+                          <td className="text-center pe-4">
                             <button
-                              className="btn btn-sm btn-outline-primary rounded-pill me-2"
+                              className="btn btn-sm rounded-pill px-3 fw-semibold"
+                              style={{ borderColor: "#0f766e", color: "#0f766e" }}
                               data-bs-toggle="modal"
                               data-bs-target="#doctorApprovalModal"
                               onClick={() =>
                                 fetchPendingDoctorDetails(pd.docId)
                               }
                             >
-                              View Profile
+                              <i className="bi bi-shield-check me-2"></i>Review
                             </button>
                           </td>
                         </tr>
                       );
                     })}
+                    {filteredDoctors.length === 0 && (
+                      <tr>
+                        <td colSpan="6" className="text-center py-5">
+                          <i className="bi bi-search fs-3 text-muted d-block mb-2"></i>
+                          <span className="fw-semibold d-block">No matching applications</span>
+                          <small className="text-muted">Try a different doctor name, specialty, or qualification.</small>
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>

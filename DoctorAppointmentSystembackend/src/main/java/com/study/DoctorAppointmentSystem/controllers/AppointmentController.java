@@ -228,6 +228,12 @@ public class AppointmentController {
 		return ResponseEntity.ok(appointments);
 	}
 
+	@GetMapping("/payment-history")
+	public ResponseEntity<List<AppointmentResponseDto>> getPatientPaymentHistory(
+			@AuthenticationPrincipal User user) {
+		return ResponseEntity.ok(appointmentService.getPatientPaymentHistory(user.getId()));
+	}
+
 	@GetMapping("/completed-status")
 	public ResponseEntity<List<AppointmentResponseDto>> getCompletedAppointments() {
 		return ResponseEntity.ok(appointmentService.getCompletedAppointments());

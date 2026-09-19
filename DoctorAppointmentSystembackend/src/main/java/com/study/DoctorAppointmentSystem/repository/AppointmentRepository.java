@@ -60,6 +60,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	List<Appointment> findByPatientPatientIdAndPaymentStatusAndStatus(Integer patientId, PaymentStatus paymentStatus,
 			AppointmentStatus status);
 
+	List<Appointment> findByPatientPatientIdAndStatus(Integer patientId, AppointmentStatus status);
+
 	long countByDoctorAndStatusAndPaymentStatus(Doctor doctor, AppointmentStatus status, PaymentStatus paymentStatus);
 
 	List<Appointment> findByStatus(AppointmentStatus status);

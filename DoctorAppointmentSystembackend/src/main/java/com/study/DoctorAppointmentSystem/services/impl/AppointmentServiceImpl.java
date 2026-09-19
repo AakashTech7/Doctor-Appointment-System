@@ -442,6 +442,21 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
+	public List<AppointmentResponseDto> getPatientPaymentHistory(Integer userId) {
+		User user = userRepositories.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+		Patient patient = user.getPatient();
+
+		return appointmentRepository.findByPatientPatientIdAndStatus(patient.getPatientId(), AppointmentStatus.Completed)
+				.stream().map((appointment) -> {
+					AppointmentResponseDto responseDto = modelMapper.map(appointment, AppointmentResponseDto.class);
+					responseDto.setDoctorName(appointment.getDoctor().getUser().getName());
+					responseDto.setSpecialization(appointment.getDoctor().getSpecialization());
+					responseDto.setConsultationFee(appointment.getDoctor().getConsultationFee());
+					return responseDto;
+				}).toList();
+	}
+
+	@Override
 	public List<AppointmentResponseDto> getCompletedAppointments() {
 		List<Appointment> listOfCompletedAppointments = appointmentRepository.findByStatus(AppointmentStatus.Completed);
 		List<AppointmentResponseDto> list = listOfCompletedAppointments.stream().map((c) -> {
